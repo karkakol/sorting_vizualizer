@@ -3,18 +3,19 @@ import React, {ReactNode, useState} from 'react';
 import {slide as Menu} from 'react-burger-menu';
 import {Theme, useTheme} from "@mui/material";
 
+
 const getMenuStyles = (theme: Theme) => ({
     bmBurgerButton: {
         position: 'absolute',
-        width: 26,
-        height: 20,
+        width: 28,
+        height: 24,
         left: 30,
-        top: 40,
+        top: 30,
         zIndex: 19,
 
     },
     bmBurgerBars: {
-        background: 'pink'
+        background: 'white'
     },
     bmBurgerBarsHover: {
         background: 'blue'
@@ -55,6 +56,7 @@ interface MenuComponentProps{
 function MenuComponent({children} : MenuComponentProps) {
     const theme = useTheme();
     const menuStyles = getMenuStyles(theme);
+
     const [isOpen, setIsOpen] = useState(false);
 
     return (

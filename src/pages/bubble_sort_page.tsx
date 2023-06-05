@@ -1,9 +1,9 @@
 import SortingComponent from "../components/sorting_component";
-import {bubbleSort} from "../algorithms/sorting/sorting_algorithms";
+import {suspendableBubbleSort} from "../algorithms/sorting/sorting_algorithms";
 
 export default function BubbleSortPage(){
-
+    const sort = suspendableBubbleSort();
     return (
-        <SortingComponent sortingFunction={bubbleSort} />
+        <SortingComponent sortingFunction={sort} />
     )
 }

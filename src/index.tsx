@@ -1,33 +1,38 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {appRoutes} from "./routing/app_routes";
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-    RouterProvider,
-} from "react-router-dom";
+import {routesNames} from "./routing/app_routes";
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import BubbleSortPage from "./pages/bubble_sort_page";
 import InsertionSortPage from "./pages/insertion_sort_page";
-import {SidebarContext} from "./components/sidebar/sidebar_context";
+import {SidebarContextProvider} from "./components/sidebar/sidebar_context";
 import SidebarComponent from "./components/sidebar/sidebar_component";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import HomePage from "./pages/home_page";
+import MergeSortPage from "./pages/merge_sort";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <SidebarContext> <SidebarComponent/> </SidebarContext>,
+        element: <SidebarContextProvider> <SidebarComponent/> </SidebarContextProvider>,
         errorElement: <div>Error</div>,
         children: [
             {
-                path: appRoutes.bubble,
+                path: routesNames.home,
+                element: <HomePage/>,
+            },
+            {
+                path: routesNames.bubble,
                 element: <BubbleSortPage/>,
             },
             {
-                path: appRoutes.insertion,
+                path: routesNames.insertion,
                 element: <InsertionSortPage/>,
+            },
+            {
+                path: routesNames.merge,
+                element: <MergeSortPage/>,
             },
         ],
     },

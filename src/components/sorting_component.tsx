@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {bubbleSort, insertionSort} from "../algorithms/sorting/sorting_algorithms";
+import {SuspendableSorting} from "../algorithms/sorting/sorting_algorithms";
 import BarGraph from "./bar_graph";
 import PlayButton from "./buttons/play_button";
 import StopButton from "./buttons/stop_button";
@@ -7,7 +7,7 @@ import RefreshButton from "./buttons/refresh_button";
 import {createTheme, Slider, ThemeProvider, Typography} from "@mui/material";
 
 interface SortingProp {
-    sortingFunction: Function;
+    sortingFunction: SuspendableSorting;
 }
 
 const theme = createTheme({
@@ -41,9 +41,18 @@ function SortingComponent({sortingFunction}: SortingProp) {
 
     const onSliderChange = (event: Event, value: number | number[], activeThumb: number) => {
         if (typeof value === "number") {
-            setData(getArrayFromRange(value));
+            sortingFunction.suspend().then(_ => {
+                setData(getArrayFromRange(value));
+            });
         }
     };
+
+    const onStopButtonPressed = () => {
+        sortingFunction.suspend().then(_ => {
+            setData(getArrayFromRange(data.length));
+        });
+
+    }
 
 
     return (
@@ -81,8 +90,8 @@ function SortingComponent({sortingFunction}: SortingProp) {
 
                     </ThemeProvider>
                 </div>
-                <PlayButton onClick={() => sortingFunction({data, setData})}/>
-                <StopButton/>
+                <PlayButton onClick={() => sortingFunction.execute({data, setData})}/>
+                <StopButton onClick={onStopButtonPressed}/>
                 <RefreshButton onClick={onRefreshButtonClick}/>
             </div>
         </div>
