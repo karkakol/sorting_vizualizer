@@ -80,6 +80,7 @@ function SortingComponent({sortingFunction}: SortingProp) {
                 </Typography>
                 <div style={{
                     width: '300px',
+                    paddingRight: '12px',
                 }}>
                     <ThemeProvider theme={theme}>
                         <div>

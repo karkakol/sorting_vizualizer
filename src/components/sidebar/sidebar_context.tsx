@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import {SidebarProvider} from "../../provider/sidebar_provider";
+import {SidebarProvider} from "../../providers/sidebar_provider";
 
 
 // @ts-ignore

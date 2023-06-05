@@ -4,7 +4,7 @@ import {Outlet, useNavigate} from 'react-router-dom';
 import {AppRoute} from "../../routing/app_routes";
 import MenuComponent from "./menu_component";
 import './sidebar_component_style.css';
-import {SidebarContext} from "../../provider/sidebar_provider";
+import {SidebarContext} from "../../providers/sidebar_provider";
 
 const sidebarTileStyleClass = 'sidebarElement';
 
@@ -27,12 +27,12 @@ function SidebarComponent() {
             <MenuComponent>
                 <div>
                     <div className={sidebarTileStyleClass}
-                         onClick={() => onTileTap(AppRoute.defaultUnauthRoute)}
+                         onClick={() => onTileTap(AppRoute.defaultAuthRoute)}
                          style={{
                              paddingBottom: '20px',
                              paddingTop: '20px',
                              fontSize: '28px',
-                             fontWeight: currValue === AppRoute.defaultUnauthRoute ? '500' : '300'
+                             fontWeight: currValue === AppRoute.defaultAuthRoute ? '500' : '300'
                          }}>
                         Home
                     </div>

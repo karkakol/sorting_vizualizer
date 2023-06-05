@@ -12,12 +12,12 @@ interface SidebarContextInterface {
 }
 
 export const SidebarContext = createContext<SidebarContextInterface>({
-    currValue: AppRoute.defaultUnauthRoute, setCurrValue: (_) => {
+    currValue: AppRoute.defaultAuthRoute, setCurrValue: (_) => {
     }
 });
 
 export function SidebarProvider({children}: SidebarProviderProps) {
-    const [currentItem, setCurrentItem] = useState(AppRoute.defaultUnauthRoute);
+    const [currentItem, setCurrentItem] = useState(AppRoute.defaultAuthRoute);
     return (
         <SidebarContext.Provider value={{currValue: currentItem, setCurrValue: setCurrentItem}}>
             {children}

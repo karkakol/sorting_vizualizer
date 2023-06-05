@@ -2,7 +2,9 @@ export const routesNames = {
     insertion: 'insertion-sort',
     bubble: 'bubble-sort',
     merge: 'merge-sort',
-    home: ''
+    home: '',
+    login: '/login',
+    register: '/register',
 };
 
 export class AppRoute {
@@ -40,5 +42,15 @@ export class AppRoute {
         [routesNames.merge, AppRoute.mergeSortRoute],
     ]);
 
-    static defaultUnauthRoute = AppRoute.homeRoute;
+    static loginRoute = new AppRoute(
+        routesNames.login,
+        'login',
+    );
+
+    static registerRoute = new AppRoute(
+        routesNames.register,
+        'register',
+    );
+
+    static defaultAuthRoute = AppRoute.homeRoute;
 }
